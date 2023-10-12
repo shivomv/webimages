@@ -17,7 +17,7 @@ To retrieve image URLs from a website, follow these steps:
 5. **Save the HTML File:**
    Save the following code into a file named `image_extraction.html`:
 
-##image_extraction.html file is provided in this Repo.##
+## image_extraction.html file is provided in this Repo.
 
 6. **Run the HTML File:**
    Open the saved `image_extraction.html` file in your web browser.
