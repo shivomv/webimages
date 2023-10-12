@@ -5,15 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Extraction from HAR</title>
   <style>
-    body {
+    body,html {
+      width: 100vw;
+      overflow-x: hidden;
       font-family: Arial, sans-serif;
+      background: url("https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60");
+      object-fit: cover;
+      object-position: center;
     }
 
     #imageContainer {
       display: flex;
+      background-color: #ccc;
       flex-wrap: wrap;
       justify-content: center;
       margin: 20px;
+      border: 2px solid black;
+      padding: 20px;
     }
 
     .imageItem {
@@ -27,17 +35,38 @@
     }
 
     #imageUrls {
+      background-color: #ccc;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%);
+      width: 70%;
+      overflow-x: scroll; /* Enable horizontal scrolling */
+      scrollbar-width:none;
       margin-top: 20px;
+      padding: 50px;
+      border: 2px solid black;
+    }
+    button{
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background-color: lightgreen;
     }
   </style>
 </head>
 <body>
   <div>
-    <textarea id="harInput" placeholder="Paste your HAR code here..." rows="10" cols="80"></textarea>
-    <button onclick="extractImagesFromHar()">Extract Images</button>
+    <center><textarea id="harInput" placeholder="Paste your HAR code here..." rows="10" cols="80"></textarea><br>
+      <button onclick="extractImagesFromHar()">Extract Images</button></center>
+    
   </div>
-  <div id="imageContainer"></div>
-  <div id="imageUrls"></div>
+  <div id="imageContainer">
+    <h1>Images</h1>
+  </div>
+
+  <div id="imageUrls">   
+    <center><h1>Image Url</h1></center> 
+  </div>
   <script>
     const extractImagesFromHar = () => {
       const harInput = document.getElementById('harInput').value;
@@ -74,6 +103,7 @@
         // Print image URLs
         const imageUrlText = document.createTextNode(imageUrl);
         imageUrlsDiv.appendChild(imageUrlText);
+        imageUrlsDiv.appendChild(document.createElement('br'));
         imageUrlsDiv.appendChild(document.createElement('br'));
       }
     };
