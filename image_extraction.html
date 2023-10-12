@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Extraction from HAR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #imageContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .imageItem {
+      margin: 10px;
+    }
+
+    .imageItem img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+
+    #imageUrls {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <textarea id="harInput" placeholder="Paste your HAR code here..." rows="10" cols="80"></textarea>
+    <button onclick="extractImagesFromHar()">Extract Images</button>
+  </div>
+  <div id="imageContainer"></div>
+  <div id="imageUrls"></div>
+  <script>
+    const extractImagesFromHar = () => {
+      const harInput = document.getElementById('harInput').value;
+      let harData;
+
+      try {
+        harData = JSON.parse(harInput);
+      } catch (error) {
+        alert('Invalid HAR JSON. Please check the format and try again.');
+        return;
+      }
+
+      const imageContainer = document.getElementById('imageContainer');
+      const imageUrlsDiv = document.getElementById('imageUrls');
+      imageContainer.innerHTML = '';
+      imageUrlsDiv.innerHTML = '';
+
+      const imageEntries = harData.log.entries.filter(entry => entry._resourceType === 'image');
+
+      for (const entry of imageEntries) {
+        const imageUrl = entry.request.url;
+        const imageMimeType = entry.response.content.mimeType;
+
+        const imageItem = document.createElement('div');
+        imageItem.classList.add('imageItem');
+
+        const image = document.createElement('img');
+        image.src = imageUrl;
+        image.alt = `Image - ${imageMimeType}`;
+
+        imageItem.appendChild(image);
+        imageContainer.appendChild(imageItem);
+
+        // Print image URLs
+        const imageUrlText = document.createTextNode(imageUrl);
+        imageUrlsDiv.appendChild(imageUrlText);
+        imageUrlsDiv.appendChild(document.createElement('br'));
+      }
+    };
+  </script>
+</body>
+</html>
