@@ -1,4 +1,3 @@
-
 ## Image URL Collection Steps
 
 To retrieve image URLs from a website, follow these steps:
@@ -15,24 +14,20 @@ To retrieve image URLs from a website, follow these steps:
 4. **Copy as HAR:**
    Right-click on any image file in the network tab, select "Copy," and then choose "Copy all as HAR."
 
-5. **Access the Console:**
-   Navigate to the console in the developer tools.
+5. **Save the HTML File:**
+   Save the following code into a file named `image_extraction.html`:
 
-6. **Process the HAR Data:**
-   Type the following command in the console:
-   ```javascript
-   var har = /* Paste the copied HAR data here */;
-   ```
+**provided image_extraction.html**
 
-7. **Execute the Code:**
-   Press Enter after typing the command.
+6. **Run the HTML File:**
+   Open the saved `image_extraction.html` file in your web browser.
+
+7. **Paste HAR Data and Extract Images:**
+   Paste the copied HAR data into the text area in the HTML file and click the "Extract Images" button.
 
 8. **Extract Image URLs:**
-   Copy and Paste the code given in the webimages.js file in the console. Press Enter.
-
-9. **Collect Image URLs:**
-   Press Enter after typing the command to display and collect all image URLs.
-
-You can then use these gathered image URLs for your intended purposes.
+   The image URLs will be displayed below. You can copy and use them for your intended purposes.
 
 ---
+
+Following these steps will allow you to easily collect image URLs from the desired webpage and utilize them for your needs.
